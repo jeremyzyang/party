@@ -7,10 +7,6 @@ library(SnowballC)
 
 # read data
 data <- Corpus(DirSource("C:/Users/Jeremy/Desktop/Workspace/R/shiny_party"))
-test <- read.csv("code.csv")
-head(test)
-
-
 
 # server function
 
@@ -97,9 +93,6 @@ shinyServer(function(input, output) {
 
 # check it's manifesto or speech
   
-  output$table <- renderTable({
-    head(test)
-  })
   
   output$plot1 <- renderPlot({
     wordcloud(names(cloud.d()),cloud.d(),scale=c(5,.5),max.word=100,rot.per=.3,color=brewer.pal(6,'Dark2')) 
