@@ -1,5 +1,8 @@
 #### server script 
-
+install.packages('shiny')
+install.packages('tm')
+install.packages('wordcloud')
+install.packages('SnowballC')
 library(shiny)
 library(tm)
 library(wordcloud)
