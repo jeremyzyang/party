@@ -33,7 +33,7 @@ shinyUI(fluidPage(
            plotOutput('plot3')),
     column(2,h5("Republican Speech:")),
     column(3,
-           tableOutput('table'))
+           tableOutput('plot4'))
   ),
   
   hr(),
