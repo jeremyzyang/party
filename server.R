@@ -6,7 +6,7 @@ library(wordcloud)
 library(SnowballC)
 
 # read data
-data <- Corpus(DirSource("C:/Users/Jeremy/Desktop/Workspace/R/shiny_party"))
+data <- Corpus(DirSource("data"))
 
 # server function
 
