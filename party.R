@@ -1,13 +1,10 @@
-#party#   
-
-
-########################################################################################################################
-#get text from webpage and analyze the text
+#######################
+#### text scraping ####
+#######################
 
 # we need "XML" package to read html files
 install.packages("XML")
 library(XML)
-
 
 # HtmltoTxt function: extract text from webpage
 ## we pass a url and a local path to the function,it returns a txt file at the location we specified in the path
@@ -26,8 +23,6 @@ HtmltoTxt <- function (url,path)                           #filename needs to be
 
 ## an example of how to use HtmltoTxt
 HtmltoTxt("http://www.presidency.ucsb.edu/ws/index.php?pid=101962","C:/Users/Jeremy/Desktop/democratic2012.txt")
-
-
 
 
 # creat a R object for the corpus we need to analyze
@@ -55,8 +50,9 @@ wordcount(corpus,"god")
 
 
 
-#########################################################################################################################
-# visualization
+#######################
+#### visualization ####
+#######################
 
 # Some simple graphing
 library(ggplot2)
@@ -94,8 +90,9 @@ religi.plot <- ggplot(religi, aes(x=time)) +
   theme(legend.position="none") +
   scale_x_continuous(breaks = seq(1856, 2012, 8))
 
-##############################################################################
-# wordcloud 
+###################
+#### wordcloud ####
+###################
 
 install.packages('NLP')
 library(NLP)
@@ -121,7 +118,6 @@ wordcloud <- tm_map(wordcloud,content_transformer(removeWords),c('may','will'))
 wordcloud <- tm_map(wordcloud,content_transformer(stripWhitespace))
 wordcloud <- tm_map(wordcloud,content_transformer(stemDocument))
 return(wordcloud)}
-
 
 # try a subset of cleaning functions
 wordcloud <- tm_map(d.corpus,content_transformer(removePunctuation))
@@ -203,8 +199,9 @@ wordcloud(names(r.wordlist.4),r.wordlist.4,max.word=400,rot.per=0.2)
 # all years
 wordcloud(names(r.wordlist),r.wordlist,max.word=400,rot.per=0.2,colors=brewer.pal(6,'Dark2'))
 
-###################################################################################
-# To Freq Words Data Frame
+##################################
+#### To Freq Words Data Frame ####
+##################################
 
 ## democrat manifesto 
 d.corpus <- Corpus(DirSource("C:/Users/Jeremy/Desktop/Workspace/R/party/democrat"))
@@ -364,7 +361,10 @@ x <- x[,c('time','democrat','manifesto','words','freq')]
 head(x)
 write.csv(x,"C:/Users/Jeremy/Desktop/R_example.csv")
 
-## sentiment analysis
+############################
+#### sentiment analysis ####
+############################
+
 install.packages("tm.lexicon.GeneralInquirer", repos="http://datacube.wu.ac.at", type="source")
 require("tm.lexicon.GeneralInquirer")
 sapply(acq[1:10], tm_term_score, terms_in_General_Inquirer_categories("Positiv"))
